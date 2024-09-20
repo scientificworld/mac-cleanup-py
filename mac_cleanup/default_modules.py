@@ -500,3 +500,11 @@ def chromium_caches():
         unit.add(Path("~/Library/Application Support/Chromium/ShaderCache/"))
         unit.add(Path("~/Library/Application Support/Chromium/Default/DawnCache/"))
         unit.add(Path("~/Library/Application Support/Chromium/Default/GPUCache/"))
+
+def ccache():
+    from mac_cleanup.utils import cmd
+
+    if cmd("type 'ccache'"):
+        with clc as unit:
+            unit.message("Cleaning up ccache cache")
+            unit.add(Command("ccache -C"))
